@@ -1,0 +1,108 @@
+#include<iostream>
+using namespace std;
+
+class str
+{ 
+  char str1[20],str2[20];
+  int i;
+   public:
+    void input();
+    void output();
+    void sub();
+    void copy();
+    void len();
+    void con();
+    void reverse();
+};
+
+ void str::input()
+ { cout<<"Enter String1\n"<<endl;
+   cin>>str1;
+
+   cout<<"Enter String2\n"<<endl;
+   cin>>str2;
+  }
+
+ void str::output()
+ { cout<<"Entered String1\n"<<endl;
+   cout<<str1;
+   cout<<"\n";
+
+   cout<<"Entered String2\n"<<endl;
+   cout<<str2;
+   cout<<"\n";
+  
+  }
+ 
+ void str::len()
+ { int l1,l2;
+
+   for(i=0;str1[i]!='\0';i++)
+    { l1++;
+     }
+   cout<<"Entered String1 length= "<<l1<<endl;
+
+
+   for(i=0;str2[i]!='\0';i++)
+    { l2++;
+     }
+   cout<<"Entered String2 length= "<<l2<<endl;
+ }
+
+ void str::copy()
+  { strcpy(str2,str1);
+    cout<<"Copied string: ";
+    cout<<str2;
+  }
+ 
+ void str::sub()
+  {
+  }
+
+ void str::con()
+  { strcat(str1,str2);
+    cout<<"Required String= ";
+    cout<<str1;
+  }
+
+ void str::reverse()
+  { int m;
+    for(i=0;str1[i]!='\0';i++)
+    { cout<<strrev(str1);
+    }
+  }
+
+ 
+int main()
+{ str s;
+  s.input();
+  s.output();
+  int choice;
+  char a;
+  
+   do
+    { cout<<"1.String length\n2.String copy\n3.String concate\n4.String reverse\n";
+      cout<<"Entered choice\n";
+      cin>>choice;
+        switch(choice)
+        { case 1:s.len();
+                 break;
+ 
+          case 2:s.copy();
+                 break;
+
+          case 3:s.con();
+                 break;
+
+          case 4:s.reverse();
+                 break;
+
+          default:cout<<"Thanks";
+        }
+  cout<<"Do another choice(y/n): \n";
+  
+    }while(a=='y');
+
+
+ return 0;
+}

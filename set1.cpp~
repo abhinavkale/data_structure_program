@@ -1,0 +1,262 @@
+/*Problem Statement-Second year Computer Engineering class, set A of students like Vanilla Ice-cream and set B of students like butterscotch ice-cream. Write C/C++ program to store two sets using linked list. compute and display 
+1.Set of students who like either vanilla or butterscotch or both  
+2.Set of students who like both vanilla and butterscotch 
+3.Set of students who like only vanilla not butterscotch 
+4.Set of students who like only butterscotch not vanilla 
+5.Number of students who like neither vanilla nor butterscotch.
+
+Name-Abhinav Kale
+Batch-F3
+Rollno-21326
+*/
+#include<iostream>
+using namespace std;
+
+
+
+class node
+{
+    int data;
+    struct node *next;
+
+    public:
+
+node *createnode()
+{
+    int n,i;
+    node *p,*head,*t;
+    head=NULL;
+    cout<<"\nenter the no of students ";
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+        p=new node;
+        cout<<"\nenter the students roll no ";
+        cin>>p->data;
+        p->next=NULL;
+        if(head==NULL)
+            head=p;
+        else
+        {
+            t=head;
+            while(t->next!=NULL)
+                t=t->next;
+            t->next=p;
+        }
+    }
+    return head;
+}
+
+
+void print(node *head)
+{
+    node *p;
+    int cnt=0;
+    p=head;
+    while(p!=NULL)
+    {
+        cout<<p->data<<" ";
+        p=p->next;
+cnt++;
+
+    }
+    cout<<"\ntotal no of students "<<cnt;
+
+}
+
+
+int uni(node *head,node *head1)
+{
+    node *p,*q;
+    int found=0,count=0;
+    p=head;
+    while(p!=NULL)
+    {
+        cout<<p->data<<" ";
+        p=p->next;
+	count++;
+    };
+
+
+    for(q=head1;q!=NULL;q=q->next)
+    {
+        found=0;
+        for(p=head;p!=NULL;p=p->next)
+        {
+            if(q->data==p->data)
+            {
+                found=1;
+                break;
+            }
+        }
+
+        if(found!=1)
+        {
+            cout<<q->data<<" ";
+        }
+        count++;
+    }
+    return count;
+}
+
+
+
+
+void inter(node *head1,node *head2)
+{
+    node *p,*q;
+    int found=0;
+
+    for(q=head2;q!=NULL;q=q->next)
+    {
+        found=0;
+        for(p=head1;p!=NULL;p=p->next)
+        {
+            if(q->data==p->data)
+            {
+                found=1;
+                break;
+            }
+        }
+        if(found==1)
+        {
+            cout<<q->data<<" ";
+        }
+    }
+}
+
+
+
+void sub1(node *head1,node *head2)
+{
+    node *p,*q;
+    int found=0;
+
+    for(p=head1;p!=NULL;p=p->next)
+    {
+        found=0;
+                for(q=head2;q!=NULL;q=q->next)
+                {
+                    if(p->data==q->data)
+                    {
+                        found=1;
+                        break;
+                    }
+                }
+
+
+        if(found!=1)
+        {
+            cout<<p->data<<" ";
+
+        }
+    }
+}
+
+
+void sub2(node *head1,node *head2)
+{
+    node *p,*q;
+    int found=0;
+
+    for(q=head2;q!=NULL;q=q->next)
+    {
+        found=0;
+                for(p=head1;p!=NULL;p=p->next)
+                {
+                    if(p->data==q->data)
+                    {
+                        found=1;
+                        break;
+                    }
+                }
+
+
+        if(found!=1)
+        {
+            cout<<q->data<<" ";
+
+        }
+    }
+}
+};
+
+
+
+
+
+int main()
+{ node s1,s2,s3;
+    node *head,*head1;
+    int ch=0,m,ct=0;
+    head=head1=NULL;
+
+    cout<<"\nenter the no of students ";
+    cin>>m;
+    head=NULL;
+
+
+    while(ch!=8)
+    {
+        cout<<"\n 1]create";
+        cout<<"\n 2]print";
+        cout<<"\n 3]students like either vanilla or butterscotch";
+        cout<<"\n 4]students like both vanilla & butterscotch";
+        cout<<"\n 5]students like vanilla only";
+        cout<<"\n 6]students like only butterscotch";
+        cout<<"\n 7]students like neither vanilla nor butterscotch";
+
+
+        cout<<"\nenter your choice ";
+        cin>>ch;
+
+        switch(ch)
+        {
+
+        case 1:
+        cout<<"\nstudents like vanilla ";
+        head=s1.createnode();
+        cout<<"\nstudents like butterscotch ";
+        head1=s2.createnode();
+        break;
+
+
+        case 2:
+            cout<<"\nstudents like vanilla ";
+                    s1.print(head);
+                    cout<<"\nstudents like butter scotch ";
+                    s2.print(head1);
+                    break;
+
+        case 3:
+            cout<<"\n students like either vanilla or butterscotch ";
+            ct=s3.uni(head,head1);
+            break;
+
+
+        case 4:
+            cout<<"\n students like both vanilla & butterscotch ";
+            s1.inter(head,head1);
+            break;
+
+
+
+        case 5:
+            cout<<"\n students like vanilla only ";
+            s1.sub1(head,head1);
+            break;
+
+
+        case 6:
+             cout<<"\n students like butterscotch only ";
+             s2.sub2(head,head1);
+             break;
+
+        case 7:
+            cout<<"\n students like neither vanilla nor butterscotch "<<m-ct;
+            break;
+
+        }
+    }
+    return 0;
+}
